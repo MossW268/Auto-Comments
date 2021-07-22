@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Automatic Scratch Comments Viewer</title>
+<meta charset="UTF-8">
+<meta name="description" content="View Scratch comments without having to refresh the page!">
+<meta name="author" content="MossW">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+function refreshIFrame() {
+    var x = document.getElementById("comments");
+    x.contentWindow.location.reload();
+    var t = setTimeout(refreshIFrame, 5);
+}
+</script>
+</head>
+<body onload="refreshIFrame()">
+<form action="#comments" method="post">
+  <label for="user">Type in the name of the Scratcher whose comments you want to view!</label><br>
+  <input type="text" id="scratcher" name="scratcher" value="ScratchCat"><br>
+  <input type="submit" value="Enter"><br>
+</form>
+<iframe src="https://scratch.mit.edu/users/<?php echo $_POST["scratcher"]; ?>/#comments" id="comments"></iframe>
+</body>
+</html>
